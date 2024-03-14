@@ -1,5 +1,10 @@
 <script lang="ts">
 	import type { LayoutData } from './$types';
+
+	import BxsHome from '~icons/bxs/home';
+	import BxCalendarAlt from '~icons/bx/calendar-alt';
+	import BxBuilding from '~icons/bx/building';
+
 	export let data: LayoutData;
 </script>
 
@@ -8,13 +13,13 @@
 		<img class="pfpImage" alt="profile" src={data.user?.pfp || '/defaultPFP.png'} />
 	</a>
 	<a class="button" href="/dashboard">
-		<img alt="home" src="/icons/home.svg" />
+		<BxsHome />
 	</a>
-	<a class="button" href="/calendar">
-		<img alt="calendar" src="/icons/calendar.svg" />
+	<a class="button" href="/calendar" aria-label="Calendar">
+		<BxCalendarAlt />
 	</a>
 	<a class="button" href="/org">
-		<img alt="orgs" src="/icons/orgs.svg" />
+		<BxBuilding />
 	</a>
 </nav>
 
@@ -73,7 +78,7 @@
 			border-radius: 5px;
 		}
 
-		img {
+		:global(svg) {
 			filter: var(--redIconFilter);
 			aspect-ratio: 1/1;
 			width: 100%;

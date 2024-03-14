@@ -27,6 +27,7 @@
 		"@fontsource-variable/source-code-pro": "^5.0.17",
 		"@fontsource/work-sans": "^5.0.16",
 		"@iconify-json/bx": "^1.1.10",
+		"@iconify-json/bxs": "^1.1.10",
 		"@leodog896/bodyguard": "^1.3.2",
 		"@playwright/test": "^1.41.0",
 		"@prisma/client": "^5.10.2",

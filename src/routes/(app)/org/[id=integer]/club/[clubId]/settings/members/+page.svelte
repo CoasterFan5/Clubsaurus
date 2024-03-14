@@ -9,6 +9,8 @@
 	import { addToast } from '$lib/components/toaster';
 	import { tooltip } from '$lib/components/tooltips/tooltip';
 
+	import BxTransfer from '~icons/bx/transfer';
+
 	let searchBox: SearchBox<(typeof data)['roles'][number]>;
 
 	let selectedId: number | null = null;
@@ -186,7 +188,7 @@
 											}}
 											use:tooltip={'Transfer Ownership'}
 										>
-											<img class="icon" alt="kick" src="/icons/transfer.svg" />
+											<BxTransfer />
 										</button>
 									{/if}
 								</div>
@@ -277,6 +279,11 @@
 		cursor: pointer;
 		border-radius: 50%;
 		aspect-ratio: 1/1;
+
+		:global(svg) {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.actionButton:hover {

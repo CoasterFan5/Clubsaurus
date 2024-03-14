@@ -20,6 +20,9 @@ devDependencies:
   '@iconify-json/bx':
     specifier: ^1.1.10
     version: 1.1.10
+  '@iconify-json/bxs':
+    specifier: ^1.1.10
+    version: 1.1.10
   '@leodog896/bodyguard':
     specifier: ^1.3.2
     version: 1.3.2
@@ -1157,6 +1160,12 @@ packages:
 
   /@iconify-json/bx@1.1.10:
     resolution: {integrity: sha512-4JzMDYhs/hkU9mO8nNMNKZwHn706oQaD46URyUuD4fP/XAWGf01vg6wKITmQseEHsHDrtKAXjwcumfnTUDi3OQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/bxs@1.1.10:
+    resolution: {integrity: sha512-USVukTRq5PDT3KVVePYzHgYBtO9PYi4oNFuBpMf/Q1BFHAiwyP8zVewgXR1a6w/XMDIiQ3gVuTX7upkXv7cjgw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

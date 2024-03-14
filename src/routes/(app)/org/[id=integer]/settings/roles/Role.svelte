@@ -13,6 +13,9 @@
 		orgKeys,
 		orgPermissionObjectDescriptions
 	} from '$lib/permissions/orgPermissions';
+	import BxKey from '~icons/bx/key';
+	import BxPalette from '~icons/bx/palette';
+	import BxTrashAlt from '~icons/bx/trash-alt';
 	import { createPermissionsNumber } from '$lib/permissions/permissions';
 	import { toTitleCase } from '$lib/titleCase';
 
@@ -118,13 +121,13 @@
 		</div>
 		<div class="right">
 			<button class="iconButton" type="button" on:click={deleteRole}>
-				<img alt="key" src="/icons/trash.svg" title="Delete" use:tooltip={'Delete'} />
+				<BxTrashAlt />
 			</button>
-			<button class="iconButton" type="button" on:click={openColorInput}>
-				<img alt="palette" src="/icons/palette.svg" title="Color" use:tooltip={'Color'} />
+			<button class="iconButton" type="button" on:click={openColorInput} use:tooltip={'Color'} aria-label="Color">
+				<BxPalette />
 			</button>
-			<button class="iconButton" type="button" on:click={openPermEditor}>
-				<img alt="key" src="/icons/key.svg" title="Permissions" use:tooltip={'Permissions'} />
+			<button class="iconButton" type="button" on:click={openPermEditor} use:tooltip={'Permissions'} aria-label="Permissions">
+				<BxKey />
 			</button>
 		</div>
 	</div>
@@ -268,7 +271,7 @@
 		justify-content: center;
 		border-radius: 50%;
 		aspect-ratio: 1/1;
-		padding: 5px;
+		padding: 3px;
 		height: 100%;
 		box-sizing: border-box;
 		position: relative;
@@ -291,6 +294,11 @@
 		&:hover::after {
 			background: var(--dotColor);
 			z-index: -1;
+		}
+
+		:global(svg) {
+			width: 100%;
+			height: 100%;
 		}
 	}
 

@@ -7,6 +7,8 @@
 
 	import BxPencil from '~icons/bx/pencil';
 	import BxTrash from '~icons/bx/trash';
+	import BxChevronLeft from '~icons/bx/chevron-left';
+	import BxChevronRight from '~icons/bx/chevron-right';
 	import { enhance } from '$app/forms';
 	import { pushState } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -93,11 +95,11 @@
 			<Button value="Today" on:click={() => (day = dayjs())} />
 		</div>
 		<div class="arrowWrap">
-			<button on:click={() => (day = day.subtract(1, 'month'))}>
-				<img alt="previous" src="/icons/chevronLeft.svg" />
+			<button class="arrowButton" on:click={() => (day = day.subtract(1, 'month'))} title="Previous">
+				<BxChevronLeft />
 			</button>
-			<button on:click={() => (day = day.add(1, 'month'))}>
-				<img alt="next" src="/icons/chevronRight.svg" />
+			<button class="arrowButton" on:click={() => (day = day.add(1, 'month'))} title="Next">
+				<BxChevronRight />
 			</button>
 		</div>
 		<h1>{day.format('MMMM YYYY')}</h1>
@@ -307,6 +309,11 @@
 		grid-template-columns: repeat(7, 1fr);
 		grid-template-rows: auto repeat(4, 1fr);
 		box-sizing: border-box;
+	}
+
+	.arrowButton :global(svg) {
+		width: 100%;
+		height: 100%;
 	}
 
 	.event {
