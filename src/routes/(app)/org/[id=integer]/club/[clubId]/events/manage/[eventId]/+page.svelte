@@ -12,6 +12,7 @@
 	import { goto } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
 	import Checkbox from '$lib/components/Checkbox.svelte';
+	import ColorPicker from '$lib/components/ColorPicker.svelte';
 	import Input from '$lib/components/Input.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import { RRule } from '$lib/utils/rrule.js';
@@ -233,6 +234,10 @@
 			</div>
 			<div class="input">
 				<Input name="description" label="Description" value={data.event.description || ''} />
+			</div>
+			<div class="input checkbox no-top-margin">
+				<p>Color</p>
+				<ColorPicker name="color" color={data.event.color || '#e63946'} />
 			</div>
 			<input name="date" type="hidden" value={calculatedFormDate} />
 			<div class="input">

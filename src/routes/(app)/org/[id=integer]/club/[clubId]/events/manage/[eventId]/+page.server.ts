@@ -63,6 +63,8 @@ export const actions = {
 			monthlyDay: z.coerce.boolean().optional().nullable(),
 			dayOfTheMonth: z.coerce.number().optional().nullable(),
 
+			color: z.string(),
+
 			// Generates weekdaySunday...weekdaySaturday
 			...typeUnsafeObjectFromEntries(
 				weekdays.map(
@@ -218,7 +220,8 @@ export const actions = {
 					description: description ?? undefined,
 					date: rrule.toString(),
 					clubId: club.id,
-					draft: false
+					draft: false,
+					color: formData.color
 				}
 			});
 		}
