@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { fade, fly } from 'svelte/transition';
+	export let disableOverflowProtection = false;
 
 	const dispatch = createEventDispatcher<{
 		close: undefined;
@@ -14,7 +15,10 @@
 	on:mousedown|self={modalClickHelper}
 	transition:fade={{ easing: cubicInOut, duration: 150 }}
 >
-	<div transition:fly={{ easing: cubicInOut, duration: 300, delay: 50, y: 50 }}>
+	<div
+		class:overflowProtection={!disableOverflowProtection}
+		transition:fly={{ easing: cubicInOut, duration: 300, delay: 50, y: 50 }}
+	>
 		<slot />
 	</div>
 </button>
@@ -49,6 +53,9 @@
 		text-align: center;
 		max-width: calc(100% - 2rem);
 		max-height: 90%;
+	}
+
+	.overflowProtection {
 		overflow-y: auto;
 	}
 </style>

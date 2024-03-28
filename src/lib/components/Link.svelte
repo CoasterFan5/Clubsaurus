@@ -30,6 +30,7 @@
 
 		position: relative;
 		font-size: var(--fontSize, inherit);
+		text-wrap: nowrap;
 
 		&::after {
 			content: '';

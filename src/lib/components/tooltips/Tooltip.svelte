@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let text: string;
+	export let text: string = 'tooltip!';
 	export let pos = {
 		x: 0,
 		y: 0

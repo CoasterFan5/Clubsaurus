@@ -94,11 +94,24 @@
 							textColor="black">Events</Link
 						>
 					</div>
+					{#if data.clubPerms.viewAttendance || data.clubPerms.admin}
+						<div
+							class="link"
+							class:selected={route.id == '/(app)/org/[id]/club/[clubId]/attendance'}
+						>
+							<Link
+								--fontSize="1.1rem"
+								--marginRight="20px"
+								--padding="5px 0px"
+								href="{baseURL}/attendance"
+								textColor="black">Attendance <span class="badge">Beta</span></Link
+							>
+						</div>
+					{/if}
 					{#if data.clubPerms.viewSettings || data.clubPerms.admin}
 						<div class="link" class:selected={route.id == '/(app)/org/[id]/club/[clubId]/settings'}>
 							<Link
 								--fontSize="1.1rem"
-								--marginRight="20px"
 								--padding="5px 0px"
 								href="{baseURL}/settings"
 								textColor="black">Settings</Link
@@ -178,7 +191,6 @@
 		.link {
 			padding: 5px 5px;
 			box-sizing: border-box;
-
 			width: max-content;
 
 			:global(a:hover) {
@@ -211,5 +223,30 @@
 
 	.accent {
 		color: var(--accent);
+	}
+
+	.badge {
+		all: unset;
+		color: var(--accent);
+		border: 1px solid var(--accent);
+		padding: 0rem 0.5rem;
+		border-radius: 1rem;
+		box-sizing: border-box;
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+
+		&::after {
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			border-radius: 1rem;
+			top: 0px;
+			left: 0px;
+			background: var(--accent);
+			z-index: -1;
+			opacity: 0.2;
+		}
 	}
 </style>

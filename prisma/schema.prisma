@@ -28,6 +28,7 @@ model User {
 	lastName      String   @db.VarChar(255)
 	pfp           String?  @db.VarChar(255)
 	orgUsers      OrgUser[]
+	attendanceMarks ClubAttendanceCheck[]
 	sessions      Session[]
 	clubUsers     ClubUser[]
 	announcements Announcement[]
@@ -58,10 +59,39 @@ model ClubUser {
 	user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 	userId         Int
 	roleId         Int?
+	
 	role           ClubRole? @relation(fields: [roleId], references: [id])
 	owner          Boolean @default(false)
 
 	@@id([clubId, userId, organizationId])
+}
+
+model ClubAttendanceEvent {
+	id Int @id @default(autoincrement())
+	name String
+	date DateTime
+	eventId Int?
+	event Event? @relation(fields: [eventId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+	attendanceCode String?
+	createdAt      DateTime  @default(now())
+	updatedAt DateTime 	    @updatedAt
+	clubId         Int
+	club           Club      @relation(fields: [clubId], references: [id], onDelete: Cascade)
+	attendanceMarks ClubAttendanceCheck[]
+	
+}
+
+model ClubAttendanceCheck {
+	
+	attendanceEventId Int
+	attendanceEvent ClubAttendanceEvent @relation(fields: [attendanceEventId], references: [id], onDelete: Cascade)
+	club           Club      @relation(fields: [clubId], references: [id], onDelete: Cascade)
+	clubId         Int
+	user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+	userId         Int
+
+
+	@@id([clubId, userId, attendanceEventId])
 }
 
 model Organization {
@@ -102,7 +132,10 @@ model Club {
 	events         Event[]
 	roles          ClubRole[]
 	bans           Ban[]
+	attendanceEvents ClubAttendanceEvent[]
+	attendanceMarks ClubAttendanceCheck[]
 	openToJoin     Boolean       @default(true)
+	
 }
 
 model Ban {
@@ -129,6 +162,7 @@ model Event {
 	authorId    Int?
 	author      User? @relation(fields: [authorId], references: [id])
 	club        Club @relation(fields: [clubId], references: [id], onDelete: Cascade)
+	attendanceEvents ClubAttendanceEvent[]
 	// An RRULE string
 	date        String
 	// A list of RRULE strings

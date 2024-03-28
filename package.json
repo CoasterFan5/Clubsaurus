@@ -47,6 +47,7 @@
 		"@tiptap/starter-kit": "^2.1.16",
 		"@types/chance": "^1.1.6",
 		"@types/node": "^20.11.5",
+		"@types/qrcode": "^1.5.5",
 		"@types/sanitize-html": "^2.9.5",
 		"@types/ua-parser-js": "^0.7.39",
 		"@typescript-eslint/eslint-plugin": "^6.19.0",
@@ -90,6 +91,7 @@
 	"type": "module",
 	"dependencies": {
 		"@iconify-json/bxs": "^1.1.10",
+		"qrcode": "^1.5.3",
 		"@sveltejs/enhanced-img": "^0.1.9"
 	}
 }
