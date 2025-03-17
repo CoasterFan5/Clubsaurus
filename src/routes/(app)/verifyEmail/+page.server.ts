@@ -24,7 +24,7 @@ export const actions = {
 		if (!emailSend.success) {
 			return {
 				success: false,
-				message: emailSend.error == 'TIME' ? 'Wait a few minutes' : 'An error occured'
+				message: emailSend.error == 'TIME' ? 'Wait a few minutes' : 'An error occurred'
 			};
 		}
 

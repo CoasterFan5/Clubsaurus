@@ -13,6 +13,12 @@ This is based on the old version of [Clubsaurus](https://github.com/CoasterFan5/
 
 Edtech often does not consider education's best interests but instead focuses on sales and marketing. I hope Clubsaurus can be different.
 
+## Terminology
+This is mostly just so I don't mix it up:
+- Instance - The deployment of this project
+- Institution - Holds organizations and has it's own users
+- Organizations - clubs or student org
+
 ## Getting started with dev
 
 1. Clone the repo
