@@ -40,6 +40,7 @@
 	"dependencies": {
 		"@fontsource-variable/ibm-plex-sans": "^5.2.5",
 		"@fontsource-variable/nunito": "^5.2.5",
+		"@sveltejs/adapter-node": "^5.2.12",
 		"@types/node": "^22.13.10",
 		"@types/nodemailer": "^6.4.17",
 		"drizzle-orm": "^0.40.0",
