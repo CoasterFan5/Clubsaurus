@@ -29,6 +29,7 @@
 		// https://www.myndex.com/APCA/
 		--background: #ffffff;
 		--accent: #ff4b00; //
+		--accent10: color-mix(in srgb, 10% var(--accent), 90% transparent);
 		--transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.2s;
 		--font:
 			'Nunito Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,

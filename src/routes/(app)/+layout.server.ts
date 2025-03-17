@@ -20,6 +20,9 @@ export const load: LayoutServerLoad = async ({ url }) => {
 	}
 
 	return {
+		organizationInfo: {
+			name: orgList[0].organization?.name
+		},
 		authInfo: {
 			loginMethod: orgList[0].organization?.loginMethod,
 			allowRegistration: orgList[0].organization?.allowRegistration

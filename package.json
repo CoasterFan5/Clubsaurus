@@ -20,6 +20,7 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
+		"@iconify-json/ph": "^1.2.2",
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
@@ -46,6 +47,7 @@
 		"postgres": "^3.4.5",
 		"sass-embedded": "^1.85.1",
 		"svelte-french-toast": "^1.2.0",
+		"unplugin-icons": "^22.1.0",
 		"zod": "^3.24.2"
 	},
 	"pnpm": {
