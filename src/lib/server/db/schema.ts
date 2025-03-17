@@ -1,8 +1,13 @@
-import { pgTable, serial, varchar, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, integer, boolean, timestamp } from 'drizzle-orm/pg-core';
 
 export const organizationsTable = pgTable('organization', {
 	id: serial('orgId').primaryKey(),
-	name: varchar({ length: 256 })
+	name: varchar({ length: 256 }),
+	allowRegistration: boolean().notNull().default(false),
+	requireVerifiedEmail: boolean().notNull().default(true),
+	loginMethod: varchar({ enum: ['emailPassword'] })
+		.notNull()
+		.default('emailPassword')
 });
 
 export const domainsTable = pgTable('domain', {
@@ -21,6 +26,28 @@ export const usersTable = pgTable('user', {
 	firstName: varchar({ length: 256 }).notNull(),
 	lastName: varchar({ length: 256 }).notNull(),
 	email: varchar({ length: 256 }).notNull(),
+	verifiedEmail: boolean().notNull(),
 	hash: varchar({ length: 1028 }).notNull(),
 	salt: varchar({ length: 1028 }).notNull()
+});
+
+export const secureTokensTable = pgTable('secureTokens', {
+	token: varchar({
+		length: 1028
+	})
+		.primaryKey()
+		.unique(),
+	type: varchar({ enum: ['emailVerification'] }).notNull(),
+	created: timestamp().notNull().defaultNow(),
+	issuedByUserId: integer()
+		.references(() => usersTable.id)
+		.notNull()
+});
+
+export const sessionsTable = pgTable('sessions', {
+	token: varchar({ length: 1028 }).unique().primaryKey(),
+	userId: integer()
+		.notNull()
+		.references(() => usersTable.id),
+	created: timestamp().notNull()
 });

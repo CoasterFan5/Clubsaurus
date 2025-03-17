@@ -2,6 +2,11 @@
 
 Open source, self-hostable student org management.
 
+## Unstable Warning
+
+This software is not currently stable, and use is at your own risk.
+Database migratios are currently performed unsafely.
+
 ## Philosophy
 
 This is based on the old version of [Clubsaurus](https://github.com/CoasterFan5/Clubsaurus-old), which I built in high school. However, due to how that version was built, I felt trapped, and it didn't feel ready for the enterprise-level use that education institutions require.

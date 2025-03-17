@@ -1,0 +1,224 @@
+{
+	"id": "356736a1-aac6-4809-a873-101818311312",
+	"prevId": "6e57850f-74f2-4bf7-af78-f6a2847f96e5",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.domain": {
+			"name": "domain",
+			"schema": "",
+			"columns": {
+				"domainId": {
+					"name": "domainId",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"domain": {
+					"name": "domain",
+					"type": "varchar(256)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"organizationId": {
+					"name": "organizationId",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"domain_organizationId_organization_orgId_fk": {
+					"name": "domain_organizationId_organization_orgId_fk",
+					"tableFrom": "domain",
+					"tableTo": "organization",
+					"columnsFrom": ["organizationId"],
+					"columnsTo": ["orgId"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.organization": {
+			"name": "organization",
+			"schema": "",
+			"columns": {
+				"orgId": {
+					"name": "orgId",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar(256)",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"allowRegistration": {
+					"name": "allowRegistration",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": false
+				},
+				"requireVerifiedEmail": {
+					"name": "requireVerifiedEmail",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": true
+				},
+				"loginMethod": {
+					"name": "loginMethod",
+					"type": "varchar",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'emailPassword'"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.sessions": {
+			"name": "sessions",
+			"schema": "",
+			"columns": {
+				"token": {
+					"name": "token",
+					"type": "varchar(1028)",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"userId": {
+					"name": "userId",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created": {
+					"name": "created",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"sessions_userId_user_userId_fk": {
+					"name": "sessions_userId_user_userId_fk",
+					"tableFrom": "sessions",
+					"tableTo": "user",
+					"columnsFrom": ["userId"],
+					"columnsTo": ["userId"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"sessions_token_unique": {
+					"name": "sessions_token_unique",
+					"nullsNotDistinct": false,
+					"columns": ["token"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.user": {
+			"name": "user",
+			"schema": "",
+			"columns": {
+				"userId": {
+					"name": "userId",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"organizationId": {
+					"name": "organizationId",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"firstName": {
+					"name": "firstName",
+					"type": "varchar(256)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"lastName": {
+					"name": "lastName",
+					"type": "varchar(256)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar(256)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"verifiedEmail": {
+					"name": "verifiedEmail",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"hash": {
+					"name": "hash",
+					"type": "varchar(1028)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"salt": {
+					"name": "salt",
+					"type": "varchar(1028)",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"user_organizationId_organization_orgId_fk": {
+					"name": "user_organizationId_organization_orgId_fk",
+					"tableFrom": "user",
+					"tableTo": "organization",
+					"columnsFrom": ["organizationId"],
+					"columnsTo": ["orgId"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}

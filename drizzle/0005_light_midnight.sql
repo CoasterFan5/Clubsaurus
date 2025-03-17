@@ -1,0 +1,1 @@
+ALTER TABLE "organization" ADD COLUMN "requireVerifiedEmail" boolean DEFAULT true NOT NULL;

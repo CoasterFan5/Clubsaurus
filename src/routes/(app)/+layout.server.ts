@@ -15,11 +15,14 @@ export const load: LayoutServerLoad = async ({ url }) => {
 
 	if (orgList.length < 1) {
 		error(404, {
-			message: 'No organization'
+			message: 'No Organization'
 		});
 	}
 
 	return {
-		org: orgList[0].organization?.name
+		authInfo: {
+			loginMethod: orgList[0].organization?.loginMethod,
+			allowRegistration: orgList[0].organization?.allowRegistration
+		}
 	};
 };
