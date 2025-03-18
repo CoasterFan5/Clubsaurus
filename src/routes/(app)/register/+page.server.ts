@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { db } from '$lib/server/db';
 import { usersTable } from '$lib/server/db/schema';
 import { hashPassword } from '$lib/server/hashPassword';
-import { getOrgFromUrl } from '$lib/server/getOrgFromUrl';
+import { getInstitutionFromUrl } from '$lib/server/getInstitutionFromUrl';
 import { eq } from 'drizzle-orm';
 import { createSession } from '$lib/server/createSession';
 import { sendEmailVerificationEmail } from '$lib/server/sendEmailVerification';
@@ -38,7 +38,7 @@ export const actions = {
 			pass2: z.string()
 		}),
 		async ({ firstName, lastName, email, pass1, pass2 }, { url, cookies }) => {
-			const orgPromise = getOrgFromUrl(url);
+			const institutionPromise = getInstitutionFromUrl(url);
 
 			const realEmail = email.toLowerCase().trim();
 			if (pass1 != pass2) {
@@ -62,10 +62,10 @@ export const actions = {
 				});
 			}
 
-			const org = await orgPromise;
-			if (!org) {
+			const institution = await institutionPromise;
+			if (!institution) {
 				return fail(401, {
-					message: 'Error parsing organization'
+					message: 'Error parsing institution'
 				});
 			}
 
@@ -78,13 +78,13 @@ export const actions = {
 					verifiedEmail: false,
 					hash: passwordHash.hash,
 					salt: passwordHash.salt,
-					organizationId: org.id
+					institutionId: institution.id
 				})
 				.returning();
 
 			await createSession(user[0], cookies);
 
-			if (org.requireVerifiedEmail) {
+			if (institution.requireVerifiedEmail) {
 				await sendEmailVerificationEmail(user[0], url);
 				throw redirect(307, '/verifyEmail');
 			}

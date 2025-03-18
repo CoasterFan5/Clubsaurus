@@ -2,4 +2,4 @@
 	export const { data } = $props();
 </script>
 
-{data.org}
+<p>Hi</p>

@@ -1,76 +1,83 @@
 {
-	"version": "7",
-	"dialect": "postgresql",
-	"entries": [
-		{
-			"idx": 0,
-			"version": "7",
-			"when": 1741832207957,
-			"tag": "0000_thin_madripoor",
-			"breakpoints": true
-		},
-		{
-			"idx": 1,
-			"version": "7",
-			"when": 1741832675604,
-			"tag": "0001_modern_marrow",
-			"breakpoints": true
-		},
-		{
-			"idx": 2,
-			"version": "7",
-			"when": 1742059003795,
-			"tag": "0002_whole_bromley",
-			"breakpoints": true
-		},
-		{
-			"idx": 3,
-			"version": "7",
-			"when": 1742064870229,
-			"tag": "0003_unusual_purifiers",
-			"breakpoints": true
-		},
-		{
-			"idx": 4,
-			"version": "7",
-			"when": 1742183988248,
-			"tag": "0004_public_juggernaut",
-			"breakpoints": true
-		},
-		{
-			"idx": 5,
-			"version": "7",
-			"when": 1742184246235,
-			"tag": "0005_light_midnight",
-			"breakpoints": true
-		},
-		{
-			"idx": 6,
-			"version": "7",
-			"when": 1742185461432,
-			"tag": "0006_stiff_moira_mactaggert",
-			"breakpoints": true
-		},
-		{
-			"idx": 7,
-			"version": "7",
-			"when": 1742189279014,
-			"tag": "0007_small_stark_industries",
-			"breakpoints": true
-		},
-		{
-			"idx": 8,
-			"version": "7",
-			"when": 1742189643880,
-			"tag": "0008_plain_kinsey_walden",
-			"breakpoints": true
-		},
-		{
-			"idx": 9,
-			"version": "7",
-			"when": 1742189849873,
-			"tag": "0009_swift_the_liberteens",
-			"breakpoints": true
-		}
-	]
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1741832207957,
+      "tag": "0000_thin_madripoor",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1741832675604,
+      "tag": "0001_modern_marrow",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1742059003795,
+      "tag": "0002_whole_bromley",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1742064870229,
+      "tag": "0003_unusual_purifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1742183988248,
+      "tag": "0004_public_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1742184246235,
+      "tag": "0005_light_midnight",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1742185461432,
+      "tag": "0006_stiff_moira_mactaggert",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1742189279014,
+      "tag": "0007_small_stark_industries",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1742189643880,
+      "tag": "0008_plain_kinsey_walden",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1742189849873,
+      "tag": "0009_swift_the_liberteens",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1742330317013,
+      "tag": "0010_odd_beast",
+      "breakpoints": true
+    }
+  ]
 }

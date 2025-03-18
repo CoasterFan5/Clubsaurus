@@ -1,7 +1,7 @@
 import { pgTable, serial, varchar, integer, boolean, timestamp } from 'drizzle-orm/pg-core';
 
-export const organizationsTable = pgTable('organization', {
-	id: serial('orgId').primaryKey(),
+export const institutionsTable = pgTable('institution', {
+	id: serial('institutionId').primaryKey(),
 	name: varchar({ length: 256 }),
 	allowRegistration: boolean().notNull().default(false),
 	requireVerifiedEmail: boolean().notNull().default(true),
@@ -13,16 +13,16 @@ export const organizationsTable = pgTable('organization', {
 export const domainsTable = pgTable('domain', {
 	id: serial('domainId').primaryKey(),
 	domain: varchar({ length: 256 }).notNull(),
-	organizationId: integer()
+	institutionId: integer()
 		.notNull()
-		.references(() => organizationsTable.id)
+		.references(() => institutionsTable.id)
 });
 
 export const usersTable = pgTable('user', {
 	id: serial('userId').primaryKey(),
-	organizationId: integer()
+	institutionId: integer()
 		.notNull()
-		.references(() => organizationsTable.id),
+		.references(() => institutionsTable.id),
 	firstName: varchar({ length: 256 }).notNull(),
 	lastName: varchar({ length: 256 }).notNull(),
 	email: varchar({ length: 256 }).notNull(),

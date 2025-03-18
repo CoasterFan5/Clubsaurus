@@ -11,6 +11,6 @@
 	} = $props();
 </script>
 
-<title>{data.organizationInfo.name} - Clubsaurus</title>
+<title>{data.instituionInfo.name} - Clubsaurus</title>
 <Toaster />
 {@render children?.()}

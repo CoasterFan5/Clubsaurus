@@ -1,4 +1,4 @@
-import { getOrgFromUrl } from '$lib/server/getOrgFromUrl';
+import { getInstitutionFromUrl } from '$lib/server/getInstitutionFromUrl';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { getUserFromSession } from '$lib/server/getUserFromSession';
@@ -6,9 +6,9 @@ import { sendEmailVerificationEmail } from '$lib/server/sendEmailVerification';
 
 export const actions = {
 	resendEmail: async ({ url, cookies }) => {
-		const org = getOrgFromUrl(url);
+		const institution = getInstitutionFromUrl(url);
 
-		if (org == null) {
+		if (institution == null) {
 			return fail(401, {
 				message: 'error getting org'
 			});
