@@ -45,6 +45,20 @@
 		{@render navbarButton('/app', DashboardIcon, `Dashboard`, '/(app)/app')}
 		{@render navbarButton('/app', CalendarIcon, `Calendar`, '/app/calendar')}
 		{@render navbarButton('/app', CubeIcon, `Your Organizations`, '')}
+
+		{#if data.user.institutionAdmin}
+			<div class="navbarSection">
+				<span class="sectionHeader">Admin</span>
+				{@render navbarButton('/app/admin', DashboardIcon, `Dashboard`, '/(app)/app/admin')}
+				{@render navbarButton(
+					'/app/admin/organizations',
+					CubeIcon,
+					`Organizations`,
+					'/(app)/app/admin/organizations'
+				)}
+				{@render navbarButton('/app/admin', UserIcon, `Users`, '/(app)/app/admin/users')}
+			</div>
+		{/if}
 	</nav>
 	<div class="content">
 		{@render children?.()}
@@ -96,5 +110,14 @@
 			align-items: center;
 			justify-content: center;
 		}
+	}
+	.navbarSection {
+		.sectionHeader {
+			font-size: 0.8rem;
+			opacity: 0.75;
+			padding-left: 0.25rem;
+		}
+
+		padding-top: 2rem;
 	}
 </style>
