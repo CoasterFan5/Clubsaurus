@@ -19,13 +19,20 @@ export const load: LayoutServerLoad = async ({ url }) => {
 		});
 	}
 
+	if (!orgList[0].institution) {
+		error(404, {
+			message: 'No Institution'
+		});
+	}
+
 	return {
 		instituionInfo: {
-			name: orgList[0].institution?.name
+			id: orgList[0].institution.id,
+			name: orgList[0].institution.name
 		},
 		authInfo: {
-			loginMethod: orgList[0].institution?.loginMethod,
-			allowRegistration: orgList[0].institution?.allowRegistration
+			loginMethod: orgList[0].institution.loginMethod,
+			allowRegistration: orgList[0].institution.allowRegistration
 		}
 	};
 };

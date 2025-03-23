@@ -1,0 +1,426 @@
+{
+  "id": "1106021f-c74c-4aeb-819b-b076d2f1e77c",
+  "prevId": "0e7b4063-4b1c-4b3a-819e-e60f94aaae7d",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.domain": {
+      "name": "domain",
+      "schema": "",
+      "columns": {
+        "domainId": {
+          "name": "domainId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "domain": {
+          "name": "domain",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "institutionId": {
+          "name": "institutionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "domain_institutionId_institution_institutionId_fk": {
+          "name": "domain_institutionId_institution_institutionId_fk",
+          "tableFrom": "domain",
+          "tableTo": "institution",
+          "columnsFrom": [
+            "institutionId"
+          ],
+          "columnsTo": [
+            "institutionId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.institution": {
+      "name": "institution",
+      "schema": "",
+      "columns": {
+        "institutionId": {
+          "name": "institutionId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "allowRegistration": {
+          "name": "allowRegistration",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "requireVerifiedEmail": {
+          "name": "requireVerifiedEmail",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "loginMethod": {
+          "name": "loginMethod",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'emailPassword'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.secureTokens": {
+      "name": "secureTokens",
+      "schema": "",
+      "columns": {
+        "token": {
+          "name": "token",
+          "type": "varchar(1028)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created": {
+          "name": "created",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "issuedByUserId": {
+          "name": "issuedByUserId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "secureTokens_issuedByUserId_user_userId_fk": {
+          "name": "secureTokens_issuedByUserId_user_userId_fk",
+          "tableFrom": "secureTokens",
+          "tableTo": "user",
+          "columnsFrom": [
+            "issuedByUserId"
+          ],
+          "columnsTo": [
+            "userId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "secureTokens_token_unique": {
+          "name": "secureTokens_token_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "token"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.sessions": {
+      "name": "sessions",
+      "schema": "",
+      "columns": {
+        "token": {
+          "name": "token",
+          "type": "varchar(1028)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created": {
+          "name": "created",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sessions_userId_user_userId_fk": {
+          "name": "sessions_userId_user_userId_fk",
+          "tableFrom": "sessions",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "userId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "sessions_token_unique": {
+          "name": "sessions_token_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "token"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.studentOrgs": {
+      "name": "studentOrgs",
+      "schema": "",
+      "columns": {
+        "orgId": {
+          "name": "orgId",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "institutionId": {
+          "name": "institutionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created": {
+          "name": "created",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "studentOrgs_institutionId_institution_institutionId_fk": {
+          "name": "studentOrgs_institutionId_institution_institutionId_fk",
+          "tableFrom": "studentOrgs",
+          "tableTo": "institution",
+          "columnsFrom": [
+            "institutionId"
+          ],
+          "columnsTo": [
+            "institutionId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "studentOrgs_orgId_unique": {
+          "name": "studentOrgs_orgId_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "orgId"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.studentOrgUser": {
+      "name": "studentOrgUser",
+      "schema": "",
+      "columns": {
+        "orgId": {
+          "name": "orgId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "studentOrgUser_orgId_studentOrgs_orgId_fk": {
+          "name": "studentOrgUser_orgId_studentOrgs_orgId_fk",
+          "tableFrom": "studentOrgUser",
+          "tableTo": "studentOrgs",
+          "columnsFrom": [
+            "orgId"
+          ],
+          "columnsTo": [
+            "orgId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "studentOrgUser_userId_user_userId_fk": {
+          "name": "studentOrgUser_userId_user_userId_fk",
+          "tableFrom": "studentOrgUser",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "userId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "key": {
+          "name": "key",
+          "nullsNotDistinct": true,
+          "columns": [
+            "orgId",
+            "userId"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.user": {
+      "name": "user",
+      "schema": "",
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "institutionId": {
+          "name": "institutionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "firstName": {
+          "name": "firstName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastName": {
+          "name": "lastName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verifiedEmail": {
+          "name": "verifiedEmail",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hash": {
+          "name": "hash",
+          "type": "varchar(1028)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "salt": {
+          "name": "salt",
+          "type": "varchar(1028)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "institutionAdmin": {
+          "name": "institutionAdmin",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_institutionId_institution_institutionId_fk": {
+          "name": "user_institutionId_institution_institutionId_fk",
+          "tableFrom": "user",
+          "tableTo": "institution",
+          "columnsFrom": [
+            "institutionId"
+          ],
+          "columnsTo": [
+            "institutionId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

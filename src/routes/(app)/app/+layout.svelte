@@ -47,7 +47,6 @@
 		{@render navbarButton('/app', CubeIcon, `Your Organizations`, '')}
 	</nav>
 	<div class="content">
-		{page.route.id}
 		{@render children?.()}
 	</div>
 </div>

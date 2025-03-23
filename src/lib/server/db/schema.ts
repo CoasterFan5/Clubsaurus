@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, integer, boolean, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, integer, boolean, timestamp, unique } from 'drizzle-orm/pg-core';
 
 export const institutionsTable = pgTable('institution', {
 	id: serial('institutionId').primaryKey(),
@@ -28,7 +28,8 @@ export const usersTable = pgTable('user', {
 	email: varchar({ length: 256 }).notNull(),
 	verifiedEmail: boolean().notNull(),
 	hash: varchar({ length: 1028 }).notNull(),
-	salt: varchar({ length: 1028 }).notNull()
+	salt: varchar({ length: 1028 }).notNull(),
+	institutionAdmin: boolean().notNull().default(false)
 });
 
 export const secureTokensTable = pgTable('secureTokens', {
@@ -51,3 +52,25 @@ export const sessionsTable = pgTable('sessions', {
 		.references(() => usersTable.id),
 	created: timestamp().notNull()
 });
+
+export const studentOrgsTable = pgTable('studentOrgs', {
+	id: serial('orgId').notNull().unique(),
+	institutionId: integer()
+		.notNull()
+		.references(() => institutionsTable.id),
+	name: varchar({ length: 256 }).notNull(),
+	created: timestamp().notNull().defaultNow()
+});
+
+export const studentOrgUserTable = pgTable(
+	'studentOrgUser',
+	{
+		orgId: integer()
+			.notNull()
+			.references(() => studentOrgsTable.id),
+		userId: integer()
+			.notNull()
+			.references(() => usersTable.id)
+	},
+	(t) => [unique('key').on(t.orgId, t.userId).nullsNotDistinct()]
+);
