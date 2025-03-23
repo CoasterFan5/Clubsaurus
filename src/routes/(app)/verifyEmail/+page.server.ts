@@ -22,10 +22,9 @@ export const actions = {
 		const emailSend = await sendEmailVerificationEmail(user, url);
 
 		if (!emailSend.success) {
-			return {
-				success: false,
-				message: emailSend.error == 'TIME' ? 'Wait a few minutes' : 'An error occurred'
-			};
+			return fail(401, {
+				message: emailSend.error == 'TIME' ? 'Wait 10 minutes between sends' : 'An error occurred'
+			});
 		}
 
 		return {
